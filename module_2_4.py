@@ -21,4 +21,5 @@ for i in numbers:
         primes.append(i)
 print(primes)
 print(not_primes)
+print()
 
