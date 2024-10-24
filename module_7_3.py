@@ -25,7 +25,34 @@ class WordsFinder:
         for i in trim_chars:
             line = line.replace(i,'')
         return line
+        
+    def find(self,word):
+    	res={}
+    	for key, value in self.get_all_words().items():
+    		for i in range(len(value)):
+    			if value[i].lower()==word.lower():
+    				res[key]=i+1
+    				break
+    			else:
+    				res[key]=(f'not find {word}')
+    	return res
+    	
+    def count(self,word):
+    	res={}
+    	for key, value in self.get_all_words().items():
+    		count=0
+    		for i in range(len(value)):
+    			if value[i].lower()==word.lower():
+    				count+=1
+    		res[key]=count
+    	return res
+    	
+				
+			
 
 
-mytxt = WordsFinder('products.txt','test.txt')
-mytxt.get_all_words()
+mytxt = WordsFinder('Rudyard_Kipling.txt')
+print(mytxt.get_all_words())
+
+print(mytxt.find('iF')) # 1 слово по счёту
+print(mytxt.count('iF')) # 14 слов iF в тексте всего
