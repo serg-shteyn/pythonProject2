@@ -9,7 +9,7 @@ class IncorrectCarNumbers(Exception):
         self.message = message
 
 class Car:
-    __numbers = ''
+    
 
     def __init__(self,model,vin,numbers):
         self.__is_valid_vin(vin)
