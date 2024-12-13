@@ -10,7 +10,7 @@ class Knight(Thread):
 		self.power=power
 		
 	def run(self):
-		enemys=300
+		enemys=100
 		days=0
 		print(f"{self.name}, на нас напали!")
 		while enemys>0:
