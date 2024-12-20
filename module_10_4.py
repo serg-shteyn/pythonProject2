@@ -28,23 +28,30 @@ class Cafe:
     def guest_arrival(self, *guests):
         for g in guests:
             for t in self.tables:
+                #print(f"t.guest -> {t.guest}")
                 if t.guest is None:
-                    t.guest = g
+                    t.guest = g.name
                     print(f"{g.name} сел(-а) за стол номер {t.number}.")
                     g.start()
                     break
-                else:
-                    self.queue.put(g)
-                    print(f"{g.name} в очереди")
-
-
-
-
-
-
+            if not g.is_alive():
+            	self.queue.put(g.name)
+            	print(f"{g.name} в очереди")
 
     def discuss_guests(self): # обслужить гостей
-        pass
+        while not self.queue.empty() or not None in self.tables:
+        	for t in self.tables:
+        		if t.guest is not None and not Guest(name=t.guest).is_alive():
+        			print(f'{t.guest} покушал(-а) и ушёл(ушла) и Стол номер {t.number} свободен')
+        			t.guest=None
+        		if not self.queue.empty() and t.guest == None:
+        			t.guest=self.queue.get()
+        			print(f"{self.queue.get()} вышел(-ла) из очереди и сел(-а) за стол номер {t.number}")
+        			Guest(name=t.guest).start()
+        			
+        			
+        			
+        			
 
 
 # Создание столов
@@ -67,30 +74,3 @@ cafe.guest_arrival(*guests)
 
 # Обслуживание гостей
 cafe.discuss_guests()
-
-
-
-
-
-
-
-
-
-
-def getter(queue):
-    while True:
-        time.sleep(4)
-        item = queue.get()
-        print(threading.current_thread(), 'Взят элемент',item)
-
-
-q = Queue()
-thread1 = threading.Thread(target=getter,args=(q,),daemon=True)
-#thread1.start()
-
-#for i in range(10):
-#    time.sleep(2)
-#    q.put(i)
-#   print(threading.current_thread(), 'Положил в очередь элемент,', i)
-
-
