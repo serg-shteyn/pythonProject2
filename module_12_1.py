@@ -21,20 +21,24 @@ class RunnerTest(unittest.TestCase):
 		self.tw=Runner('Name2')
 	
 	def test_walk(self):
+		tw=Runner('Name1')
 		for i in range(10):
-			self.tw.walk()
-		self.assertEqual(self.tw.distance,50)
+			tw.walk()
+		self.assertEqual(tw.distance,50)
 
 	def test_run(self):
+	    tr=Runner('Name2')
 	    for i in range(10):
-	        self.tr.run()
-	    self.assertEqual(self.tr.distance,100)
+	        tr.run()
+	    self.assertEqual(tr.distance,100)
 
 	def test_challenge(self):
+		tw=Runner('Name3')
+		tr=Runner('Name4')
 		for i in range(10):
-			self.tw.walk()
-			self.tr.run()
-		self.assertNotEqual(self.tw.distance,self.tr.distance)
+			tw.walk()
+			tr.run()
+		self.assertNotEqual(tw.distance,tr.distance)
 
 if __name__ == '__main__':
     unittest.main()
