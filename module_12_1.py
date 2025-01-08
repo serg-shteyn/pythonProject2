@@ -16,10 +16,6 @@ class Runner:
 
 class RunnerTest(unittest.TestCase):
 	
-	def setUp(self):
-		self.tr=Runner('Name1')
-		self.tw=Runner('Name2')
-	
 	def test_walk(self):
 		tw=Runner('Name1')
 		for i in range(10):
