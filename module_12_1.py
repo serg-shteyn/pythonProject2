@@ -15,29 +15,26 @@ class Runner:
         return self.name
 
 class RunnerTest(unittest.TestCase):
-    def __init__(self, tw: object, tr: object) -> object:
-        super.__init__(tw,tr)
-        self.test_walk(tw)
-        self.test_run(tr)
-        self.test_challenge(tw,tr)
+	
+	def setUp(self):
+		self.tr=Runner('Name1')
+		self.tw=Runner('Name2')
+	
+	def test_walk(self):
+		for i in range(10):
+			self.tw.walk()
+		self.assertEqual(self.tw.distance,50)
 
-    def test_walk(self,tw):
-        for i in range(10):
-            tw.walk()
-        self.assertEqual(tw.distance,50)
+	def test_run(self):
+	    for i in range(10):
+	        self.tr.run()
+	    self.assertEqual(self.tr.distance,100)
 
-    def test_run(self,tr):
-        for i in range(10):
-            tr.run()
-        self.assertEqual(tr.distance,100)
-
-    def test_challenge(self,tw,tr):
-        for i in range(10):
-            tw.walk()
-            tr.run()
-        self.assertNotEqual(tw.distance,tr.distance)
+	def test_challenge(self):
+		for i in range(10):
+			self.tw.walk()
+			self.tr.run()
+		self.assertNotEqual(self.tw.distance,self.tr.distance)
 
 if __name__ == '__main__':
-    t1=Runner('Sergey')
-    t2 = Runner('Svetlana')
-    RunnerTest(t1,t2)
+    unittest.main()
