@@ -5,6 +5,9 @@ class Runner:
         self.name = name
         self.distance = 0
         self.speed = speed
+      
+    def __str__(self):
+    	return self.name
 
     def run(self):
         self.distance += self.speed * 2
@@ -53,30 +56,30 @@ class TournamentTest(TestCase):
 		self.run3 = Runner('Ник', 3)
 		
 	def test_run1(self):
+		key=1
 		running=Tournament(90,self.run1,self.run3)
-		self.all_results[self.key]=running.start()
-		max_res=max(self.all_results[self.key])
-		self.assertTrue(self.run3.name==self.all_results[self.key][max_res])
-		self.key+=1
+		self.all_results[key]=running.start()
+		max_res=max(self.all_results[key])
+		self.assertTrue(self.run3.name==self.all_results[key][max_res])
 		
 	def test_run2(self):
+		key=2
 		running=Tournament(90,self.run2,self.run3)
-		self.all_results[self.key]=running.start()
-		max_res=max(self.all_results[self.key])
-		self.assertTrue(self.run3.name==self.all_results[self.key][max_res])
-		self.key+=1
+		self.all_results[key]=running.start()
+		max_res=max(self.all_results[key])
+		self.assertTrue(self.run3.name==self.all_results[key][max_res])
 		
 	def test_run3(self):
+		key=3
 		running=Tournament(90,self.run2,self.run1,self.run3)
-		self.all_results[self.key]=running.start()
-		max_res=max(self.all_results[self.key])
-		self.assertTrue(self.run3.name==self.all_results[self.key][max_res])
-		self.key+=1
+		self.all_results[key]=running.start()
+		max_res=max(self.all_results[key])
+		self.assertTrue(self.run3.name==self.all_results[key][max_res])
 		
 	@classmethod	
 	def tearDownClass(cls):
-		for res in cls.all_results:
-			print(res)
+		for test in cls.all_results:
+			print(cls.all_results[test])
 			
 			
 if __name__ == '__main__':
