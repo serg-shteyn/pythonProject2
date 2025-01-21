@@ -16,7 +16,8 @@ class Runner:
         self.distance += self.speed
 
     def __str__(self):
-        return self.name
+        pass
+        #return self.name
 
     def __eq__(self, other):
         if isinstance(other, str):
