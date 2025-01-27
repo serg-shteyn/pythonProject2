@@ -2,6 +2,7 @@
 import logging
 import unittest
 
+
 class Runner:
 	def __init__(self, name, speed=5):
 		if isinstance(name, str):
@@ -56,17 +57,28 @@ class RunnerTest(unittest.TestCase):
 
 	@unittest.skipIf(is_frozen,'Тесты в этом кейсе заморожены')
 	def test_walk(self):
-		tw=Runner('Name1')
-		for i in range(10):
-			tw.walk()
-		self.assertEqual(tw.distance,50)
+		try:
+			tw=Runner('Name1',-10)
+			for i in range(10):
+				tw.walk()
+			self.assertEqual(tw.distance,10*tw.speed)
+			logging.info('"test_walk" выполнен успешно')
+		except Exception as exc:
+			logging.warning('Неверная скорость для Runner"')
+			raise ValueError('Ошибка создания объекта',exc)
+
 
 	@unittest.skipIf(is_frozen, 'Тесты в этом кейсе заморожены')
 	def test_run(self):
-		tr=Runner('Name2')
-		for i in range(10):
-			tr.run()
-		self.assertEqual(tr.distance,100)
+		try:
+			tr=Runner(346)
+			for i in range(10):
+				tr.run()
+			self.assertEqual(tr.distance,100)
+			logging.info('test_run" выполнен успешно')
+		except:
+			logging.warning('Неверный тип данных для объекта Runner')
+			raise ValueError('Ошибка создания объекта')
 
 	@unittest.skipIf(is_frozen, 'Тесты в этом кейсе заморожены')
 	def test_challenge(self):
@@ -78,15 +90,18 @@ class RunnerTest(unittest.TestCase):
 		self.assertNotEqual(tw.distance,tr.distance)
 
 first = Runner('Вося', 10)
-# second = Runner('Илья', 5)
-# # third = Runner('Арсен', 10)
-#
-# t = Tournament(101, first, second)
-# print(t.start())
+second = Runner('Илья', 5)
+third = Runner('Арсен', 10)
+
+t = Tournament(101, first, second)
+print(t.start())
+
 
 if __name__ == '__main__':
 	logging.basicConfig(level='logging.INFO', filemode='w',filename='runner_tests.log',
-                        format='%(levelname)s ¦ %(message)s',encoding='%(UTF-8)s')
+						format='%(levelname)s ¦ %(message)s',encoding='UTF-8')
+	unittest.main()
+
 
 
 	
