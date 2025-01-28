@@ -76,7 +76,7 @@ class RunnerTest(unittest.TestCase):
 			tr=Runner(754)
 			for i in range(10):
 				tr.run()
-			self.assertEqual(tr.distance,100)
+			self.assertEqual(tr.distance,10*tr.speed)
 			logging.info('test_run" выполнен успешно')
 		except Exception as exc:
 			logging.warning('Неверный тип данных для объекта Runner')
