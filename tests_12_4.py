@@ -64,7 +64,7 @@ class RunnerTest(unittest.TestCase):
 			self.assertEqual(tw.distance,10*tw.speed)
 			logging.info('"test_walk" выполнен успешно')
 		except Exception as exc:
-			logging.error('Неверная скорость для Runner"')
+			logging.warning('Неверная скорость для Runner"')
 			raise ValueError('Ошибка создания объекта',exc)
 
 
@@ -77,7 +77,7 @@ class RunnerTest(unittest.TestCase):
 			self.assertEqual(tr.distance,100)
 			logging.info('test_run" выполнен успешно')
 		except:
-			logging.error('Неверный тип данных для объекта Runner')
+			logging.warning('Неверный тип данных для объекта Runner')
 			raise ValueError('Ошибка создания объекта')
 
 	@unittest.skipIf(is_frozen, 'Тесты в этом кейсе заморожены')
