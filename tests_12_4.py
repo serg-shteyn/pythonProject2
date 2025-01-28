@@ -2,6 +2,8 @@
 import logging
 import unittest
 
+logging.basicConfig(level=logging.INFO, filemode='w',filename='runner_tests.log',
+						format='%(levelname)s ¦ %(message)s',encoding='UTF-8')
 
 class Runner:
 	def __init__(self, name, speed=5):
@@ -64,21 +66,21 @@ class RunnerTest(unittest.TestCase):
 			self.assertEqual(tw.distance,10*tw.speed)
 			logging.info('"test_walk" выполнен успешно')
 		except Exception as exc:
-			logging.warning('Неверная скорость для Runner"')
+			logging.warning('Неверная скорость для "Runner"')
 			raise ValueError('Ошибка создания объекта',exc)
 
 
 	@unittest.skipIf(is_frozen, 'Тесты в этом кейсе заморожены')
 	def test_run(self):
 		try:
-			tr=Runner(346)
+			tr=Runner(754)
 			for i in range(10):
 				tr.run()
 			self.assertEqual(tr.distance,100)
 			logging.info('test_run" выполнен успешно')
-		except:
+		except Exception as exc:
 			logging.warning('Неверный тип данных для объекта Runner')
-			raise ValueError('Ошибка создания объекта')
+			raise ValueError('Ошибка создания объекта', exc)
 
 	@unittest.skipIf(is_frozen, 'Тесты в этом кейсе заморожены')
 	def test_challenge(self):
@@ -98,8 +100,6 @@ print(t.start())
 
 
 if __name__ == '__main__':
-	logging.basicConfig(level=logging.INFO, filemode='w',filename='runner_tests.log',
-						format='%(levelname)s ¦ %(message)s',encoding='UTF-8')
 	unittest.main()
 
 
